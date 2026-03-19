@@ -5,7 +5,7 @@ namespace EBook.Domain.IServices;
 
 public interface IUnitOfWork : IDisposable
 {
-    IGenericRepository<Book> Books { get; }
+    IBooksServices Books { get; }
     IGenericRepository<Author> Authors { get; }
     Task<int> SaveChangesAsync();
 }

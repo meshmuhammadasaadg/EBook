@@ -2,7 +2,7 @@
 
 public record BookResponse(
     int Id,
-    string Title,
+    string Title, 
     string? Description,
     decimal PhysicalPrice,
     decimal Discount,

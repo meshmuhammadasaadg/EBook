@@ -31,6 +31,6 @@ public class Result<TValue> : Result
     }
 
     public TValue Value => IsSuccess
-        ? Value
+        ? _value!
         : throw new InvalidOperationException("Failure result cannot have value");
 }

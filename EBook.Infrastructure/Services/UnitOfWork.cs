@@ -9,14 +9,14 @@ namespace EBook.Infrastructure.Services;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
-    public IGenericRepository<Book> Books { get; private set; }
+    public IBooksServices Books { get; private set; }
     public IGenericRepository<Author> Authors { get; private set; }
 
     public UnitOfWork(ApplicationDbContext context)
     {
         _context = context;
         Authors = new GenericRepository<Author>(_context);
-        Books = new GenericRepository<Book>(_context);
+        Books = new BooksServices(context);
     }
     public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
 

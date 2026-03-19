@@ -5,33 +5,33 @@ namespace EBook.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class BooksController(IUnitOfWork unitOfWork) : ControllerBase
+public class BooksController(IUnitOfWork booksServices) : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-
-    [HttpGet("")]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
-    {
-        var result = await _unitOfWork.Books.GetAllAsync(cancellationToken);
-
-        return Ok(result);
-    }
+    private readonly IUnitOfWork _booksServices = booksServices;
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetAsync([FromRoute] int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetById([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var books = await _unitOfWork.Books.GetByIdAsync(id, cancellationToken);
+        var result = await _booksServices.Books.GetBookByIdAsync(id, cancellationToken);
 
-        return books is not null ? Ok(books) : NotFound();
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
 
-    [HttpGet("by-name/{name}")]
-    public async Task<IActionResult> GetAsync([FromRoute] string name, CancellationToken cancellationToken)
-    {
-        var book = await _unitOfWork.Books.FindAync(c => c.Title == name, cancellationToken: cancellationToken);
+    //[HttpGet("{id}")]
+    //public async Task<IActionResult> GetAsync([FromRoute] int id, CancellationToken cancellationToken)
+    //{
+    //    var books = await _unitOfWork.Books.GetByIdAsync(id, cancellationToken);
 
-        return book is not null ? Ok(book) : NotFound();
-    }
+    //    return books is not null ? Ok(books) : NotFound();
+    //}
+
+    //[HttpGet("by-name/{name}")]
+    //public async Task<IActionResult> GetAsync([FromRoute] string name, CancellationToken cancellationToken)
+    //{
+    //    var book = await _unitOfWork.Books.FindAync(c => c.Title == name, cancellationToken: cancellationToken);
+
+    //    return book is not null ? Ok(book) : NotFound();
+    //}
     //[HttpPost("")]
     //public async Task<IActionResult> AddAsync([FromBody] Book request, CancellationToken cancellationToken)
     //{
