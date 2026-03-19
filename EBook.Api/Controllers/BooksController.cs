@@ -1,5 +1,4 @@
-﻿using EBook.Domain.Entities;
-using EBook.Domain.IServices;
+﻿using EBook.Domain.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EBook.Api.Controllers;
@@ -33,12 +32,12 @@ public class BooksController(IUnitOfWork unitOfWork) : ControllerBase
 
         return book is not null ? Ok(book) : NotFound();
     }
-    [HttpPost("")]
-    public async Task<IActionResult> AddAsync([FromBody] Book request, CancellationToken cancellationToken)
-    {
-        var book = await _unitOfWork.Books.AddAsync(request, cancellationToken);
-        await _unitOfWork.CompleteAsync();
+    //[HttpPost("")]
+    //public async Task<IActionResult> AddAsync([FromBody] Book request, CancellationToken cancellationToken)
+    //{
+    //    var book = await _unitOfWork.Books.AddAsync(request, cancellationToken);
+    //    await _unitOfWork.SaveChangesAsync();
 
-        return book is not null ? Ok(book) : NotFound();
-    }
+    //    return book is not null ? Ok(book) : NotFound();
+    //}
 }
