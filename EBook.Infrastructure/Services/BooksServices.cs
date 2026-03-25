@@ -3,7 +3,7 @@ using EBook.Domain.Contracts.Books;
 using EBook.Domain.Entities;
 using EBook.Domain.Errors;
 using EBook.Domain.IServices;
-using EBook.Infrastructure.Presistence;
+using EBook.Infrastructure.Persistences;
 using EBook.Infrastructure.Services.Repositories;
 using Mapster;
 
@@ -17,7 +17,7 @@ public class BooksServices(ApplicationDbContext context) : GenericRepository<Boo
     {
         var book = await GetByIdAsync(id, cancellationToken: cancellationToken);
 
-        if (book is null)
+        if (book is null)  
             return Result.Failure<BookResponse>(BookErrors.BookNotFound);
 
         return Result.Success(book.Adapt<BookResponse>());

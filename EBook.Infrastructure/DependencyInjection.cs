@@ -1,4 +1,4 @@
-﻿using EBook.Infrastructure.Presistence;
+﻿using EBook.Infrastructure.Persistences;
 using Mapster;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;

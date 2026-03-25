@@ -1,7 +1,7 @@
 ﻿using EBook.Domain.Entities;
 using EBook.Domain.IServices;
 using EBook.Domain.IServices.IRepositories;
-using EBook.Infrastructure.Presistence;
+using EBook.Infrastructure.Persistences;
 using EBook.Infrastructure.Services.Repositories;
 
 namespace EBook.Infrastructure.Services;

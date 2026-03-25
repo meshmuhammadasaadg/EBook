@@ -1,7 +1,7 @@
 ﻿using EBook.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EBook.Infrastructure.Presistence;
+namespace EBook.Infrastructure.Persistences; 
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {

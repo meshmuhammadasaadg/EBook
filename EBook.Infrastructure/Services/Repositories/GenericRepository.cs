@@ -1,5 +1,5 @@
 ﻿using EBook.Domain.IServices.IRepositories;
-using EBook.Infrastructure.Presistence;
+using EBook.Infrastructure.Persistences;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -23,7 +23,7 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
         return await query.AsNoTracking().ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<T>> GetAllByPredicateAync(Expression<Func<T, bool>> predicate, string[] includes = null!, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<T>> GetAllByPredicateAsync(Expression<Func<T, bool>> predicate, string[] includes = null!, CancellationToken cancellationToken = default)
     {
         IQueryable<T> query = _context.Set<T>();
 
@@ -40,7 +40,7 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
     public async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken = default) =>
         await _context.Set<T>().FindAsync(id, cancellationToken);
 
-    public async Task<T?> GetByPredicateAync(Expression<Func<T, bool>> predicate, string[] includes = null!, CancellationToken cancellationToken = default)
+    public async Task<T?> GetByPredicateAsync(Expression<Func<T, bool>> predicate, string[] includes = null!, CancellationToken cancellationToken = default)
     {
         IQueryable<T> query = _context.Set<T>();
 

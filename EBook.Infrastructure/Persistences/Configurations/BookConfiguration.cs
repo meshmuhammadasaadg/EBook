@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EBook.Infrastructure.Presistence.Configurations;
+namespace EBook.Infrastructure.Persistences.Configurations;
 
 public class BookConfiguration : IEntityTypeConfiguration<Book>
 {

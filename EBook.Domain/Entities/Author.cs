@@ -1,6 +1,6 @@
 ﻿namespace EBook.Domain.Entities;
 
-public sealed class Author
+public sealed class Author : AuditableEntity
 {
     public int Id { get; set; }
     public string FullName { get; set; } = string.Empty;
