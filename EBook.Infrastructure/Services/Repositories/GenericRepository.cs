@@ -1,5 +1,5 @@
 ﻿using EBook.Domain.IServices.IRepositories;
-using EBook.Infrastructure.Persistences;
+using EBook.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

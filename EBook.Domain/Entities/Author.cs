@@ -7,5 +7,5 @@ public sealed class Author : AuditableEntity
     public string Bio { get; set; } = string.Empty;
     public byte[]? ProfilePic { get; set; }
 
-    public ICollection<Book> Books { get; set; } = [];
+    public ICollection<Book>? Books { get; set; } = [];
 }

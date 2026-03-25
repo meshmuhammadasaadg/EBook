@@ -1,6 +1,8 @@
-﻿using EBook.Infrastructure.Persistences;
+﻿using EBook.Domain.Entities;
+using EBook.Infrastructure.Persistence;
 using Mapster;
 using MapsterMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +20,8 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
 
-        services.AddMapsterConfig();
+        services.AddMapsterConfig()
+                .AddAuthenticationConfig();
 
         return services;
     }
@@ -32,6 +35,15 @@ public static class DependencyInjection
 
         return services;
     }
+
+    private static IServiceCollection AddAuthenticationConfig(this IServiceCollection services)
+    {
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        return services;
+    }
+
 
     //private static IServiceCollection AddFluentValidationConfig(this IServiceCollection services)
     //{
